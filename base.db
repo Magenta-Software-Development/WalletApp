@@ -1,0 +1,44 @@
+-- Crear la base de datos
+CREATE DATABASE GastosPersonales;
+
+-- Usar la base de datos
+USE GastosPersonales;
+
+-- Tabla de Usuarios
+CREATE TABLE Usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100),
+    email VARCHAR(100),
+    rol VARCHAR(20) NOT NULL  -- Agregamos el campo "rol"
+);
+
+-- Tabla de Categorías de Gastos
+CREATE TABLE CategoriasGastos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla de Gastos
+CREATE TABLE Gastos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    categoria_id INT,
+    descripcion VARCHAR(255),
+    monto DECIMAL(10, 2),
+    fecha DATE
+);
+
+-- Establecer relaciones entre las tablas
+ALTER TABLE Gastos
+ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(id);
+
+ALTER TABLE Gastos
+ADD FOREIGN KEY (categoria_id) REFERENCES CategoriasGastos(id);
+
+
+-- Insertar un nuevo usuario
+INSERT INTO Usuarios (username, password, nombre, email,rol) VALUES
+('lizgar12', '12345678.', 'Edwin', 'edwin@gmail.com',user);
