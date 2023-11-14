@@ -14,7 +14,6 @@ require_once "config/config.php";
 function getCon()   //funcion para obtener la conexion
 {
 
-
   try {
     $con = new PDO("mysql:host=" . HOST . ";dbname=" . DB_NAME, USER,  PASS);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -58,7 +57,7 @@ $con = null;
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  
+
 </head>
 
 <body>
@@ -108,7 +107,7 @@ $con = null;
     </div>
   </div>
 
-  <h1>Mi aplicacion para gastos</h1>
+  <h1>Mi wallet</h1>
   <div class="row">
     <div class="col l5 offset-l1 s12">
       <table id="transactionTable">
@@ -131,11 +130,11 @@ $con = null;
               <td><?= $transaction['descripcion'] ?></td>
               <td><?= $transaction['monto'] ?></td>
               <td>
-                <?= 
+                <?=
                 //si tipo es ingreso se pone en verde, si es egreso se pone en rojo
                 $transaction['tipo'] == 'Ingreso' ? '<span class="green-text">' . $transaction['categoria'] . '</span>' : '<span class="red-text">' . $transaction['categoria'] . '</span>'
-                 ?>
-            </td>
+                ?>
+              </td>
               <td>
                 <form action="users/eliminar.php" method="POST">
                   <input type="hidden" name="id" value="<?php echo $transaction['id']; ?>">
